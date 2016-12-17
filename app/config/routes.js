@@ -4,17 +4,30 @@ var
 
 var Router = router.Router;
 var Route = router.Route;
+var hashHistory = router.hashHistory;
 var IndexRoute  = Router.IndexRoute;
 
 var 
     Main = require('./../components/Main'),
-    Search = require('./../components/children/Search'),
-    Saved = require('./../components/children/Saved');
+    Search = require('./../components/Search'),
+    Query = require('./../components/Query'),
+    Results = require('./../components/Results'),
+    Saved = require('./../components/Saved');
 
-module.exports = {
-    <Route path='/' component={Main}>
-        <Route path='search' component={Search} />
-        <Route path='saved' component={Saved} />
-        <IndexRoute component={Search} />
-    </Route>
-}
+module.exports = (
+    <Router history={hashHistory}>
+        <Route path='/' component={Main}>
+
+            <Route path='search' component={Search} >
+                <Route path='query' component={Query} />
+                <Route path='results' component={Results} />
+                
+            </Route>
+
+            <Route path='saved' component={Saved} />
+
+            
+
+        </Route>
+    </Router>
+);

@@ -3,7 +3,7 @@ var React = require('react');
 var Saved = React.createClass({
     render: function() {
         return (
-            <!-- Saved Articles -->
+            
             <div className="white">
                 <h2 className="center-align light-blue darken-3">Saved Articles</h2>
                 <div className="row">
@@ -27,6 +27,15 @@ var Saved = React.createClass({
                             </li>
                         </ul>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col s5 offset-s1 center-align">
+                        <a class="waves-effect light-blue btn col s12">Back to Search Results</a>
+                    </div>
+                    <div class="col s5 center-align">
+                        <a class="waves-effect light-blue btn col s12">New Search</a>
+                    </div>
+                    <div class="row"></div>
                 </div>
             </div>
         );
