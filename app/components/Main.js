@@ -1,6 +1,7 @@
 var React = require('react');
 
 var Main = React.createClass({
+
     render: function() {
         return (
             
@@ -13,7 +14,7 @@ var Main = React.createClass({
                     </div>
                 </div>
                 
-                {this.props.children}
+                    {this.props.children}
 
             </div>
         );

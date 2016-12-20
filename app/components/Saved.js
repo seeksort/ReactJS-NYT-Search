@@ -28,14 +28,14 @@ var Saved = React.createClass({
                         </ul>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col s5 offset-s1 center-align">
-                        <a class="waves-effect light-blue btn col s12">Back to Search Results</a>
+                <div className="row">
+                    <div className="col s5 offset-s1 center-align">
+                        <a className="waves-effect light-blue btn col s12" href="#/search/results">Back to Search Results</a>
                     </div>
-                    <div class="col s5 center-align">
-                        <a class="waves-effect light-blue btn col s12">New Search</a>
+                    <div className="col s5 center-align">
+                        <a className="waves-effect light-blue btn col s12" href="#/search">New Search</a>
                     </div>
-                    <div class="row"></div>
+                    <div className="row"></div>
                 </div>
             </div>
         );
