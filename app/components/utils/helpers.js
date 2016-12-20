@@ -21,7 +21,6 @@ var helpers = {
                 'end_date': endYr
             }
         }).then(function(res) {
-            console.log(res.data.response.docs[0].web_url); //debug
 
             var resultsArr = res.data.response.docs;
             var articlesArr = [];

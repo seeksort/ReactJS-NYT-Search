@@ -1,7 +1,14 @@
 var React = require('react');
 
 var Results = React.createClass({
+
     render: function() {
+        var articleComponents = this.props.results.map(function(article, index) {
+            return (<li className="collection-item" key={index}>
+                        <div><a href={article.url}>{article.title}</a><a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="save article">save</i></a></div>
+                    </li>)
+        }.bind(this));
+
         return (
             
             <div className="white">
@@ -9,18 +16,9 @@ var Results = React.createClass({
                 <div className="row">
                     <div className="col s12">
                         <ul className="collection with-header">
-                            <li className="collection-item">
-                                <div>{this.props.results}<a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="save article">save</i></a></div>
-                            </li>
-                            <li className="collection-item">
-                                <div>Article Title 2<a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="save article">save</i></a></div>
-                            </li>
-                            <li className="collection-item">
-                                <div>Article Title 3<a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="save article">save</i></a></div>
-                            </li>
-                            <li className="collection-item">
-                                <div>Article Title 4<a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="save article">save</i></a></div>
-                            </li>
+                            
+                            {articleComponents}
+
                         </ul>
                     </div>
                 </div>

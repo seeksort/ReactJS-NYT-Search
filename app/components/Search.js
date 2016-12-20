@@ -5,7 +5,7 @@ var React = require('react'),
 
 var Search = React.createClass({
     getInitialState: function() {
-        return { topic: "", startYr: "", endYr: "", results: ""};
+        return { topic: "", startYr: "", endYr: "", results: []};
     },
 
     componentDidUpdate: function(prevProps, prevState) {
@@ -45,7 +45,7 @@ var Search = React.createClass({
                 
                 <Query setTopic={this.setTopic} setStartYr={this.setStartYr} setEndYr={this.setEndYr} />
 
-                <Results currentSearch={this.state}/>
+                <Results currentSearch={this.state} results={this.state.results} />
 
             </div>
             

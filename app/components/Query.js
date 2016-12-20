@@ -2,7 +2,7 @@ var React = require('react');
 
 var Query = React.createClass({
     getInitialState: function() {
-        return { topic: "", startYr: "", endYr: "" };z
+        return { topic: "", startYr: "", endYr: "" };
       },
     handleChange: function(event) {
         var newState = {};

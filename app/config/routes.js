@@ -26,7 +26,7 @@ module.exports = (
 
             <Route path='search' component={Search} >
 
-                <Route path='query' component={Query} />
+                <Route path='/' component={Query} />
                 <Route path='results' component={Results} />
                 
                 <IndexRoute component={Query} />
