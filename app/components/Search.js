@@ -1,5 +1,6 @@
 var React = require('react'),
     Query = require('./Query'),
+    Results = require('./Results'),
     helpers = require("./utils/helpers");
 
 var Search = React.createClass({
@@ -17,7 +18,7 @@ var Search = React.createClass({
 
             helpers.runQuery(searchArr).then(function(data) {
                 if (data !== this.state.results) {
-                    console.log(data);
+                    console.log(data);// debug
                     this.setState({results: data});
                 }
             }.bind(this));
@@ -43,6 +44,8 @@ var Search = React.createClass({
             <div>
                 
                 <Query setTopic={this.setTopic} setStartYr={this.setStartYr} setEndYr={this.setEndYr} />
+
+                <Results currentSearch={this.state}/>
 
             </div>
             

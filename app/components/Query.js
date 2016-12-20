@@ -22,7 +22,7 @@ var Query = React.createClass({
             <div className="white">
                 <h2 className="center-align light-blue darken-3">Search</h2>
                 <div className="row">
-                    <form className="col s12" onSubmit={this.handleSubmit}>
+                    <form className="col s12" onSubmit={this.handleSubmit} action="#/search/results">
                         <div className="row">
                             <div className="input-field col s10 offset-s1">
                                 <input 
@@ -63,7 +63,7 @@ var Query = React.createClass({
                             </div>
                         </div>
                         <div className="row">
-                            <button className="waves-effect light-blue btn col s10 offset-s1" type="submit" name="action" href="#/search/results">Submit</button>
+                            <button className="waves-effect light-blue btn col s10 offset-s1" type="submit" name="action" >Submit</button>
                         </div>
                     </form>
                 </div>

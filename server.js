@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 
 // Start Mongoose & test connection
 var ObjectId = require('mongoose').Types.ObjectId;
-var databaseUri = 'mongodb://localhost/obscura_db';
+var databaseUri = 'mongodb://localhost/nytreact';
 var db = mongoose.connection;
 
 if (process.env.MONGODB_URI) {
@@ -41,19 +41,19 @@ db.once("open", function() {
 
 // Express Routes
 app.get('/', function(req, res){
-    //
+    res.render('./public/index.html')
 });
 
 app.get('/api/saved', function(req, res){
-    //
+    // look in MongoDB
 });
 
 app.post('/api/saved', function(req, res){
-    //
+    // save to MongoDB
 });
 
 app.delete('/api/saved', function(req, res){
-    //
+    // delete from MongoDB
 });
 
 app.listen(PORT, function() {

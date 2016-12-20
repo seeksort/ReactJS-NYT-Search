@@ -22,7 +22,21 @@ var helpers = {
             }
         }).then(function(res) {
             console.log(res.data.response.docs[0].web_url); //debug
-            return res;
+
+            var resultsArr = res.data.response.docs;
+            var articlesArr = [];
+
+            resultsArr.forEach(function(current, index){
+                var newObj = {
+                    title: current.headline.main,
+                    date: current.pub_date,
+                    url: current.web_url
+                }
+                articlesArr.push(newObj);
+
+            });
+
+            return articlesArr;
         });
     }
 };
