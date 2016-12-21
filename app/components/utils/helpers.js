@@ -2,6 +2,7 @@ var axios = require("axios");
 
 var helpers = {
 
+    // Run API Query
     runQuery: function(searchArr) {
         console.log(searchArr); //debug
         var 
@@ -36,6 +37,29 @@ var helpers = {
             });
 
             return articlesArr;
+        });
+    },
+
+    // Make GET request to Mongoose db
+    getSaved: function() {
+
+        return axios.get('/api/saved').then(function(res) {
+
+            var resultsArr = res;
+            var articlesArr = [];
+
+            res.forEach(function(current, index){
+                var newObj = {
+                    title: current.title,
+                    date: current.date,
+                    url: current.url
+                }
+                articlesArr.push(newObj);
+
+            });
+            console.log(articlesArr);
+            return articlesArr;
+
         });
     }
 };

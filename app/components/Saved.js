@@ -1,7 +1,23 @@
-var React = require('react');
+var React = require('react'),
+    helpers = require("./utils/helpers");
 
 var Saved = React.createClass({
+    getInitialState: function() {
+        helpers.getSaved().then(function(data) {
+            console.log(data);// debug
+            return { saved: [data] };
+        });  
+    },
+
     render: function() {
+
+        var articleComponents = this.props.saved.map(function(article, index) {
+            return (<li className="collection-item" key={index}>
+                        <div><span className="article-date">Date Saved: {article.date} - </span><a href={article.url}>{article.title}</a><a href="/api/saved" action="DELETE" className="secondary-content articles"><i className="material-icons blue-text" title="delete article">delete</i></a>
+                        </div>
+                    </li>)
+        }.bind(this));
+
         return (
             
             <div className="white">
@@ -9,22 +25,9 @@ var Saved = React.createClass({
                 <div className="row">
                     <div className="col s12">
                         <ul className="collection with-header">
-                            <li className="collection-item">
-                                <div><span className="article-date">Date Saved: 12/12/12 - </span>Saved Article Title 1<a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="delete article">delete</i></a>
-                                </div>
-                            </li>
-                            <li className="collection-item">
-                                <div><span className="article-date">Date Saved: 12/12/12 - </span>Saved Article Title 2<a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="delete article">delete</i></a>
-                                </div>
-                            </li>
-                            <li className="collection-item">
-                                <div><span className="article-date">Date Saved: 12/12/12 - </span>Saved Article Title 3<a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="delete article">delete</i></a>
-                                </div>
-                            </li>
-                            <li className="collection-item">
-                                <div><span className="article-date">Date Saved: 12/12/12 - </span>Saved Article Title 4<a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="delete article">delete</i></a>
-                                </div>
-                            </li>
+                            
+                            {articleComponents}
+
                         </ul>
                     </div>
                 </div>

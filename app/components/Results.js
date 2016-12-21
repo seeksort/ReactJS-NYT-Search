@@ -5,7 +5,7 @@ var Results = React.createClass({
     render: function() {
         var articleComponents = this.props.results.map(function(article, index) {
             return (<li className="collection-item" key={index}>
-                        <div><a href={article.url}>{article.title}</a><a href="#!" className="secondary-content articles"><i className="material-icons blue-text" title="save article">save</i></a></div>
+                        <div><a href={article.url}>{article.title}</a><a href="/api/saved" action="POST" className="secondary-content articles"><i className="material-icons blue-text" title="save article">save</i></a></div>
                     </li>)
         }.bind(this));
 

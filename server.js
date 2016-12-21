@@ -19,9 +19,10 @@ app.use(bodyParser.urlencoded({
 
 
 // Start Mongoose & test connection
-var ObjectId = require('mongoose').Types.ObjectId;
-var databaseUri = 'mongodb://localhost/nytreact';
-var db = mongoose.connection;
+var ObjectId = require('mongoose').Types.ObjectId,
+    databaseUri = 'mongodb://localhost/nytreact',
+    db = mongoose.connection,
+    Article = require('./models/Article.js');
 
 if (process.env.MONGODB_URI) {
     mongoose.connect(process.env.MONGODB_URI);
@@ -39,21 +40,47 @@ db.once("open", function() {
 });
 
 
-// Express Routes
-app.get('/', function(req, res){
+// Initial Routes
+app.get('/search', function(req, res){
     res.render('./public/index.html')
 });
 
+app.get('/', function(req, res){
+    res.redirect('/search')
+});
+
+// Get Saved articles
 app.get('/api/saved', function(req, res){
-    // look in MongoDB
+    Article.find({}, function(err, docs) {
+        if (err) {
+            console.log(err);
+        } 
+        else {
+            res.json(docs);
+        }
+    });
 });
 
+// Save an article
 app.post('/api/saved', function(req, res){
-    // save to MongoDB
+    Article.save(function(err, req) {
+        if (err) {
+            console.log(err);
+        } 
+        else {
+            res.sendStatus(200);
+            res.send('Article saved to database.');
+        }
+    });
 });
 
+// Delete a saved article
 app.delete('/api/saved', function(req, res){
-    // delete from MongoDB
+    Article.remove({ '_id': req.params.articleid }, function(err) {
+        if (err) {
+            console.log(err);
+        }
+    })
 });
 
 app.listen(PORT, function() {
