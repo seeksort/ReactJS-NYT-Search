@@ -29,10 +29,7 @@ var Saved = React.createClass({
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col s5 offset-s1 center-align">
-                        <a className="waves-effect light-blue btn col s12" href="#/search/results">Back to Search Results</a>
-                    </div>
-                    <div className="col s5 center-align">
+                    <div className="col s10 offset-s1 center-align">
                         <a className="waves-effect light-blue btn col s12" href="#/search">New Search</a>
                     </div>
                     <div className="row"></div>

@@ -20,6 +20,7 @@ var Search = React.createClass({
                 if (data !== this.state.results) {
                     console.log(data);// debug
                     this.setState({results: data});
+                    window.location.href = '#/search/results';
                 }
             }.bind(this));
         }
@@ -39,15 +40,19 @@ var Search = React.createClass({
     },
 
     render: function() {
+        var children = React.Children.map(this.props.children, function (child) {
+                return React.cloneElement(child, {
+                  setTopic: this.setTopic,
+                  setStartYr: this.setStartYr,
+                  setEndYr: this.setEndYr,
+                  currentSearch: this.state,
+                  results: this.state.results
+                })
+              }.bind(this));
+
         return (
             
-            <div>
-                
-                <Query setTopic={this.setTopic} setStartYr={this.setStartYr} setEndYr={this.setEndYr} />
-
-                <Results currentSearch={this.state} results={this.state.results} />
-
-            </div>
+            <div>{children}</div>
             
         )
     }
