@@ -6,6 +6,7 @@ var Router = router.Router;
 var Route = router.Route;
 var hashHistory = router.hashHistory;
 var IndexRoute  = router.IndexRoute;
+var IndexRedirect = router.IndexRedirect;
 
 var 
     Main = require('./../components/Main'),
@@ -24,17 +25,18 @@ module.exports = (
     <Router history={hashHistory}>
         <Route path='/' component={Main}>
 
+            <IndexRedirect to="/search" />
+
             <Route path='search' component={Search} >
 
-                <Route path='results' component={Results} />
-                
                 <IndexRoute component={Query} />
+
+                <Route path='results' component={Results} />             
 
             </Route>
 
             <Route path='saved' component={Saved} />
 
-            <IndexRoute component={Search} />
 
         </Route>
     </Router>

@@ -1,11 +1,30 @@
-var React = require('react');
+var React = require('react'),
+    helpers = require("./utils/helpers");
 
 var Results = React.createClass({
+    handleChange: function(event) {
+        event.preventDefault();
+        console.log(this.props.results[event.target.id]);
+        helpers.saveArticle(this.props.results[event.target.id]);
+    },
+
+    handleSubmit: function(event) {
+        alert("Saved!");
+    },
 
     render: function() {
         var articleComponents = this.props.results.map(function(article, index) {
             return (<li className="collection-item" key={index}>
-                        <div><a href={article.url}>{article.title}</a><a href="/api/saved" action="POST" className="secondary-content articles"><i className="material-icons blue-text" title="save article">save</i></a></div>
+                        <div>
+                            <a href={article.url}>{article.title}</a>
+                            <form className="inline" id={index} onSubmit={this.handleChange}>
+                                <input type="hidden" name="extra_submit_param" value="extra_submit_value" />
+                                <button type="submit" name="action" onClick={this.handleSubmit} className="link-button">
+                                    <i className="material-icons blue-text" title="save article">save</i>
+                                </button>
+                                
+                            </form>
+                        </div>
                     </li>)
         }.bind(this));
 

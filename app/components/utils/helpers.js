@@ -61,6 +61,19 @@ var helpers = {
             return articlesArr;
 
         });
+    },
+
+    // Make POST request to Mongoose db
+    saveArticle: function(obj) {
+        return axios.post('/api/saved', {
+            title: obj.title,
+            date: obj.date,
+            url: obj.url
+        }).then(function(res) {
+            console.log('POST response: ' + res);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 };
 

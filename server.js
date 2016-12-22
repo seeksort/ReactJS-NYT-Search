@@ -3,7 +3,10 @@ var
     express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    morgan = require('morgan');
+    morgan = require('morgan'),
+    Promise = require('bluebird');
+
+mongoose.Promise = Promise;
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -40,14 +43,6 @@ db.once("open", function() {
 });
 
 
-// Initial Routes
-app.get('/search', function(req, res){
-    res.render('./public/index.html')
-});
-
-app.get('/', function(req, res){
-    res.redirect('/search')
-});
 
 // Get Saved articles
 app.get('/api/saved', function(req, res){
@@ -63,15 +58,26 @@ app.get('/api/saved', function(req, res){
 
 // Save an article
 app.post('/api/saved', function(req, res){
-    Article.save(function(err, req) {
-        if (err) {
-            console.log(err);
-        } 
-        else {
-            res.sendStatus(200);
-            res.send('Article saved to database.');
-        }
+    var newSavedArticle = new Article({
+        title: req.body.title,
+        date: req.body.date,
+        url: req.body.url
     });
+
+    Article.find({'title': newSavedArticle.title}, function(err, docs) {
+        if (docs.length === 0) {
+            console.log('new article obj: ' + newSavedArticle);
+            newSavedArticle.save(function(err, req) {
+                if (err) {
+                    console.log(err);
+                } 
+                else {
+                    res.sendStatus(200);
+                }
+            });
+        }
+    })
+
 });
 
 // Delete a saved article
