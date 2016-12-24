@@ -45,10 +45,9 @@ var helpers = {
 
         return axios.get('/api/saved').then(function(res) {
 
-            var resultsArr = res;
             var articlesArr = [];
 
-            res.forEach(function(current, index){
+            res.data.forEach(function(current, index){
                 var newObj = {
                     title: current.title,
                     date: current.date,

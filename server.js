@@ -76,6 +76,9 @@ app.post('/api/saved', function(req, res){
                 }
             });
         }
+        else {
+            res.sendStatus(200);
+        }
     })
 
 });

@@ -9,21 +9,22 @@ var Results = React.createClass({
     },
 
     handleSubmit: function(event) {
-        alert("Saved!");
+        this.props.setParent(helpers.getSaved().then(function(data){}.bind(this)));
+        alert("Article saved!");
     },
 
     render: function() {
         var articleComponents = this.props.results.map(function(article, index) {
             return (<li className="collection-item" key={index}>
                         <div>
-                            <a href={article.url}>{article.title}</a>
-                            <form className="inline" id={index} onSubmit={this.handleChange}>
+                            <form style={{display:"inline-block"}} id={index} onSubmit={this.handleChange}>
                                 <input type="hidden" name="extra_submit_param" value="extra_submit_value" />
                                 <button type="submit" name="action" onClick={this.handleSubmit} className="link-button">
                                     <i className="material-icons blue-text" title="save article">save</i>
                                 </button>
                                 
                             </form>
+                            <a href={article.url}> {article.title}</a>
                         </div>
                     </li>)
         }.bind(this));

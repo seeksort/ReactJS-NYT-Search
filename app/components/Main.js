@@ -1,10 +1,26 @@
-var React = require('react');
+var React = require('react'),
+    helpers = require("./utils/helpers");
 
 var Main = React.createClass({
+    getInitialState: function() {
+        return { savedResults: [] }
+    },
+
+    setParent: function(newResults) {
+        this.setState({
+            savedResults: newResults
+        });
+    },
 
     render: function() {
+        var children = React.Children.map(this.props.children, function(child) {
+            return React.cloneElement(child, {
+                savedResults: this.savedResults,
+                setParent: this.setParent
+            })
+        }.bind(this));
         return (
-            
+
             <div className="container" id="main">
                 <div className="row">
                     <div className="col s12 center-align">
@@ -14,7 +30,7 @@ var Main = React.createClass({
                     </div>
                 </div>
                 
-                    {this.props.children}
+                <div>{children}</div>
 
             </div>
         );
