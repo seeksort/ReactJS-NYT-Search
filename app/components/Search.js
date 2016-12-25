@@ -11,14 +11,11 @@ var Search = React.createClass({
     componentDidUpdate: function(prevProps, prevState) {
         // user must enter at least a topic
         if (prevState.topic !== this.state.topic) {
-            console.log('updated topic');
-            
 
             var searchArr = [this.state.topic, this.state.startYr, this.state.endYr];
 
             helpers.runQuery(searchArr).then(function(data) {
                 if (data !== this.state.results) {
-                    console.log(data);// debug
                     this.setState({results: data});
                     window.location.href = '#/search/results';
                 }

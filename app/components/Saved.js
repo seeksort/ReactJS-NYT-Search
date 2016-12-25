@@ -8,12 +8,10 @@ var Saved = React.createClass({
 
     componentDidMount: function() {
         helpers.getSaved().then(function(data) {
-            console.log(data)
             if (data !== null) {
                 this.setState({
                     savedResults: data
                 });
-                console.log('componentDidMount function has executed')
             }
             else {
                 this.setState({
@@ -26,8 +24,6 @@ var Saved = React.createClass({
     // DELETE saved article
     handleDelete: function(event) {
         event.preventDefault();
-        console.log(event.target.id);
-        console.log(this.state.savedResults[event.target.id]);
         helpers.deleteArticle(this.state.savedResults[event.target.id]);
         // remove results from state
         this.state.savedResults.splice(event.target.id, 1);

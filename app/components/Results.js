@@ -5,7 +5,6 @@ var Results = React.createClass({
     // POST new saved article
     handleChange: function(event) {
         event.preventDefault();
-        console.log(this.props.results[event.target.id]);
         helpers.saveArticle(this.props.results[event.target.id]);
     },
 

@@ -10,8 +10,6 @@ var helpers = {
             startYr = (searchArr[1].toString() || 1950) + '0101',
             endYr = (searchArr[2].toString() || 2016) + '1231';
 
-        console.log(topic + ' ' + startYr + ' ' + endYr)//debug
-
         var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 
         return axios.get(url, {
@@ -56,7 +54,6 @@ var helpers = {
                 articlesArr.push(newObj);
 
             });
-            console.log(articlesArr);
             return articlesArr;
 
         });
@@ -69,7 +66,7 @@ var helpers = {
             date: obj.date,
             url: obj.url
         }).then(function(res) {
-            console.log('POST response: ' + res);
+            console.log('Article saved.');
         }).catch(function (error) {
             console.log(error);
         });
@@ -78,14 +75,13 @@ var helpers = {
     // Make DELETE request to Mongoose db. 
     // NOTE: axios.delete() by itself does not work; json needs to be specificied as the response type.
     deleteArticle: function(obj) {
-        console.log(obj.title)
         return axios({
             method: 'delete',
             url: '/api/saved',
             data: obj,
             responseType: 'json'
         }).then(function(res) {
-            console.log('DELETE response: ' + res);
+            console.log('Article deleted.');
         }).catch(function (error) {
             console.log(error);
         });
