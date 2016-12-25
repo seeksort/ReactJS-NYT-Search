@@ -21,7 +21,7 @@ var Results = React.createClass({
                         <div>
                             <form style={{display:"inline-block"}} id={index} onSubmit={this.handleChange}>
                                 <input type="hidden" name="extra_submit_param" value="extra_submit_value" />
-                                <button type="submit" name="action" onClick={this.handleSubmit} className="waves-effect waves-light deep-purple lighten-5 btn">
+                                <button type="submit" name="action" onClick={this.handleSubmit} className="waves-effect waves-light indigo lighten-5 btn">
                                     <i className="material-icons blue-text" title="save article">save</i>
                                 </button>
                                 
@@ -34,7 +34,7 @@ var Results = React.createClass({
         return (
             
             <div className="white">
-                <h2 className="center-align light-blue darken-3">Results</h2>
+                <h3 className="center-align light-blue darken-3">Results</h3>
                 <div className="row">
                     <div className="col s12">
                         <ul className="collection with-header">

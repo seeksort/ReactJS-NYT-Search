@@ -21,7 +21,7 @@ var Query = React.createClass({
         return (
             
             <div className="white">
-                <h2 className="center-align light-blue darken-3">Search</h2>
+                <h3 className="center-align light-blue darken-3">Search</h3>
                 <div className="row">
                     <form className="col s12" onSubmit={this.handleSubmit}>
                         <div className="row">
