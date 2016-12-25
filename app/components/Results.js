@@ -2,12 +2,14 @@ var React = require('react'),
     helpers = require("./utils/helpers");
 
 var Results = React.createClass({
+    // POST new saved article
     handleChange: function(event) {
         event.preventDefault();
         console.log(this.props.results[event.target.id]);
         helpers.saveArticle(this.props.results[event.target.id]);
     },
 
+    // GET saved articles
     handleSubmit: function(event) {
         this.props.setParent(helpers.getSaved().then(function(data){}.bind(this)));
         alert("Article saved!");
@@ -19,7 +21,7 @@ var Results = React.createClass({
                         <div>
                             <form style={{display:"inline-block"}} id={index} onSubmit={this.handleChange}>
                                 <input type="hidden" name="extra_submit_param" value="extra_submit_value" />
-                                <button type="submit" name="action" onClick={this.handleSubmit} className="link-button">
+                                <button type="submit" name="action" onClick={this.handleSubmit} className="waves-effect waves-light deep-purple lighten-5 btn">
                                     <i className="material-icons blue-text" title="save article">save</i>
                                 </button>
                                 

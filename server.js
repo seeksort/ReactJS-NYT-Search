@@ -85,9 +85,16 @@ app.post('/api/saved', function(req, res){
 
 // Delete a saved article
 app.delete('/api/saved', function(req, res){
-    Article.remove({ '_id': req.params.articleid }, function(err) {
+    Article.findOneAndRemove({ 'title': req.body.title }, function(err, doc) {
         if (err) {
             console.log(err);
+        }
+        else if (doc === null) {
+            console.log('couldn\'t find a match.')
+        }
+        else {
+            console.log('doc removed: ' + doc)
+            res.sendStatus(200);
         }
     })
 });

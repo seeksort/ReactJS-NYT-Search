@@ -73,6 +73,22 @@ var helpers = {
         }).catch(function (error) {
             console.log(error);
         });
+    }, 
+
+    // Make DELETE request to Mongoose db. 
+    // NOTE: axios.delete() by itself does not work; json needs to be specificied as the response type.
+    deleteArticle: function(obj) {
+        console.log(obj.title)
+        return axios({
+            method: 'delete',
+            url: '/api/saved',
+            data: obj,
+            responseType: 'json'
+        }).then(function(res) {
+            console.log('DELETE response: ' + res);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 };
 

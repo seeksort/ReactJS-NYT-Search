@@ -23,12 +23,38 @@ var Saved = React.createClass({
         }.bind(this))
     },
 
+    // DELETE saved article
+    handleDelete: function(event) {
+        event.preventDefault();
+        console.log(event.target.id);
+        console.log(this.state.savedResults[event.target.id]);
+        helpers.deleteArticle(this.state.savedResults[event.target.id]);
+        // remove results from state
+        this.state.savedResults.splice(event.target.id, 1);
+        // have to manually reset state, b/c above line returns the deleted array element
+        this.setState({
+            savedResults: this.state.savedResults
+        })
+    },
+
+    handleSubmit: function() {
+        console.log("Article deleted!");
+    },
+
     render: function() {
         var articleComponents = [];
         if (this.state.savedResults !== []) {
             articleComponents = this.state.savedResults.map(function(article, index) {
                     return (<li className="collection-item" key={index}>
-                                <div><span className="article-date">Date Saved: {article.date} - </span><a href={article.url}>{article.title}</a><a href="/api/saved" action="DELETE" className="secondary-content articles"><i className="material-icons blue-text" title="delete article">delete</i></a>
+                                <div>
+                                    <form style={{display:"inline-block"}} id={index} onSubmit={this.handleDelete}>
+                                        <input type="hidden" name="extra_submit_param" value="extra_submit_value" />
+                                        <button type="submit" name="action" onClick={this.handleSubmit} className="waves-effect waves-light deep-purple lighten-5 btn">
+                                            <i className="material-icons blue-text" title="delete article">delete</i>
+                                        </button>
+                                        <span className="article-date"> Date Saved: {article.date.slice(0,10)} - </span>
+                                        <a href={article.url}>{article.title}</a>
+                                    </form>
                                 </div>
                             </li>)
                 }.bind(this));
